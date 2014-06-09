@@ -72,6 +72,8 @@ void SetApiKey(const char * key);
 bool GetRunSchedules();
 void SetRunSchedules(bool value);
 bool GetDHCP();
+bool GetRainDelaySupport();
+void SetRainDelaySupport(const bool value)
 void SetDHCP(const bool value);
 enum EOT {OT_NONE, OT_DIRECT_POS, OT_DIRECT_NEG, OT_OPEN_SPRINKLER};
 EOT GetOT();

@@ -29,7 +29,8 @@
 	      NV(data, 'NTPoffset');
 	      NV(data, 'ot');
 	      NV(data, 'webport');
-	      NV(data, 'sadj');
+          NV(data, 'sadj');
+	      NV(data, 'rainDel');
             }});
         });
         
@@ -120,6 +121,11 @@
             <label for="sadj">Seasonal Adjust %</label>
             <input type="range" name="sadj" id="sadj" value="" min="0" max="200" />
           </div>
+          <label for="rainDel">Rain Sensor</label>
+          <select name="rainDel" id="rainDel" data-mini="true" data-role="slider">
+              <option value="off" selected>Off</option>
+              <option value="on" >On</option>
+          </select>
 	  <div id="otdiv" data-role="fieldcontain">
             <fieldset data-role="controlgroup" data-type="vertical" data-mini="true">
               <legend>Output:</legend>

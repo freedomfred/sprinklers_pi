@@ -15,8 +15,9 @@
 #define END_OF_SCHEDULE_BLOCK	2048
 #define ADDR_NTP_IP				950
 #define ADDR_NTP_OFFSET			954
-#define ADDR_HOST				955 // NOT USED
-#define MAX_HOST_LEN			20  // NOT USED
+//#define ADDR_HOST				955 // NOT USED
+//#define MAX_HOST_LEN			20  // NOT USED
+#define ADDR_RAINDELAYSUPPORT   954
 #define ADDR_IP					976
 #define ADDR_NETMASK			980
 #define ADDR_GATEWAY			984
@@ -307,6 +308,13 @@ bool SetSettings(const KVPairs & key_value_pairs)
 		{
 			SetGateway(decodeIP(value));
 		}
+		else if (strcmp(key, "rainDel") == 0)
+		{
+            if (strcmp(value, "on") == 0)
+                SetRainDelaySupport(true);
+            else
+                SetRainDelaySupport(false);
+		}
 		else if (strcmp(key, "wuip") == 0)
 		{
 			SetWUIP(decodeIP(value));
@@ -553,6 +561,16 @@ bool GetDHCP()
 void SetDHCP(const bool value)
 {
 	EEPROM.write(ADDR_DHCP, value);
+}
+
+bool GetRainDelaySupport()
+{
+	return EEPROM.read(ADDR_RAINDELAYSUPPORT);
+}
+
+void SetRainDelaySupport(const bool value)
+{
+	EEPROM.write(ADDR_RAINDELAYSUPPORT, value);
 }
 
 EOT GetOT()

@@ -189,11 +189,14 @@ Weather::ReturnVals Weather::GetVals(const IPAddress & ip, const char * key, uin
 		char getstring[90];
 		trace(F("Connected\n"));
 		if (usePws)
-			snprintf(getstring, sizeof(getstring), "GET /api/%s/yesterday/conditions/q/pws:%s.json HTTP/1.0\n\n", key, pws);
+			snprintf(getstring, sizeof(getstring), "GET /api/%s/yesterday/conditions/q/pws:%s.json HTTP/1.1\r\n", key, pws);
 		else
-			snprintf(getstring, sizeof(getstring), "GET /api/%s/yesterday/conditions/q/%ld.json HTTP/1.0\n\n", key, (long) zip);
+			snprintf(getstring, sizeof(getstring), "GET /api/%s/yesterday/conditions/q/%ld.json HTTP/1.1\r\n", key, (long) zip);
 		//trace(getstring);
 		client.write((uint8_t*) getstring, strlen(getstring));
+        //send host header
+        snprintf(getstring, sizeof(getstring), "Host: api.wunderground.com\r\nConnection: close\r\n\r\n");
+        client.write((uint8_t*) getstring, strlen(getstring));
 
 		ParseResponse(client, &vals);
 		client.stop();

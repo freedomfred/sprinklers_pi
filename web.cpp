@@ -215,6 +215,7 @@ static void JSONSettings(const KVPairs & key_value_pairs, FILE * stream_file)
 	fprintf_P(stream_file, PSTR("\t\"wutype\" : \"%s\",\n"), GetUsePWS() ? "pws" : "zip");
 	fprintf_P(stream_file, PSTR("\t\"zip\" : \"%ld\",\n"), (long) GetZip());
 	fprintf_P(stream_file, PSTR("\t\"sadj\" : \"%ld\",\n"), (long) GetSeasonalAdjust());
+	fprintf_P(stream_file, PSTR("\t\"rainDel\" : \"%s\",\n"), GetRainDelaySupport() ? "on" : "off");
 	char ak[17];
 	GetApiKey(ak);
 	fprintf_P(stream_file, PSTR("\t\"apikey\" : \"%s\",\n"), ak);
